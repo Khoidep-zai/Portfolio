@@ -1,0 +1,140 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+:root {
+	--font-sans: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+body {
+	font-family: var(--font-sans);
+}
+
+.font-mono {
+	font-family: var(--font-mono);
+}
+
+.hero-spotlight {
+	position: relative;
+	isolation: isolate;
+}
+
+.hero-spotlight::before {
+	content: '';
+	position: absolute;
+	inset: -35% -15% -25% -15%;
+	background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 30%), rgba(16, 185, 129, 0.2), transparent 55%);
+	pointer-events: none;
+	mix-blend-mode: screen;
+	z-index: 0;
+}
+
+.hero-grid::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image: linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+	background-size: 32px 32px;
+	opacity: 0.4;
+	pointer-events: none;
+	mask-image: radial-gradient(circle at 50% 20%, rgba(0, 0, 0, 0.8), transparent 70%);
+	z-index: 0;
+}
+
+.text-shimmer {
+	background-size: 200% 100%;
+	animation: shimmer 7s ease infinite;
+}
+
+.btn-shine {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-shine::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -120%;
+	width: 60%;
+	height: 100%;
+	background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+	transform: skewX(-20deg);
+	transition: left 0.7s ease;
+	pointer-events: none;
+}
+
+.btn-shine:hover::after {
+	left: 140%;
+}
+
+.avatar-glow {
+	position: relative;
+}
+
+.avatar-glow::after {
+	content: '';
+	position: absolute;
+	inset: -14%;
+	border-radius: 9999px;
+	background: radial-gradient(circle, rgba(16, 185, 129, 0.35), transparent 65%);
+	filter: blur(18px);
+	z-index: -1;
+}
+
+.glow-card {
+	position: relative;
+	transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glow-card::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 1px;
+	background: linear-gradient(120deg, rgba(var(--glow, 16, 185, 129), 0.9), rgba(var(--glow, 16, 185, 129), 0.1));
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
+
+.glow-card:hover {
+	box-shadow: 0 24px 60px rgba(var(--glow, 16, 185, 129), 0.18);
+}
+
+.glow-card:hover::before {
+	opacity: 1;
+}
+
+.float-slow {
+	animation: float 8s ease-in-out infinite;
+}
+
+.float-slower {
+	animation: float 12s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: -200% 50%;
+	}
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
